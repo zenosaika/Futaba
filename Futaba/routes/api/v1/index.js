@@ -22,10 +22,13 @@ router.post('/insert_mockdata/:table/:n', function (req, res) {
 
     if (table == 'user') {
         for (let i = 0; i < n; i++) {
-            let unique = Math.random() * 1e16
+            let rand = Math.random();
+            let unique = rand * 1e16;
+            let package = [null, 1, 2, 3][Math.floor(rand * 4)];
+            let choice = [0, 1][Math.floor(Math.random() * 2)];
             let insert_new_user = `
-                INSERT INTO user (firstname, lastname, username, email, password)
-                VALUES ("minerva", "despair", "${unique}", "${unique}@despair.mail", "p@ssw0rd")
+                INSERT INTO user (firstname, lastname, username, email, password, package_id, is_auto_renewal)
+                VALUES ("minerva", "despair", "${unique}", "${unique}@despair.mail", "p@ssw0rd", ${package}, ${choice})
             `;
             db.run(insert_new_user);
         }
@@ -33,9 +36,12 @@ router.post('/insert_mockdata/:table/:n', function (req, res) {
 
     if (table == 'message') {
         for (let i = 0; i < n; i++) {
+            let min = 1680338307324;
+            let max = 1682068275502;
+            let random_timestamp = min + Math.floor((max - min) * Math.random());
             let insert_new_message = `
                 INSERT INTO message (timestamp, body, sender_user_id, receiver_user_id)
-                VALUES (${Date.now()}, "hello, world!", 1, 1)
+                VALUES (${random_timestamp}, "hello, world!", 1, 1)
             `;
             db.run(insert_new_message);
         }
@@ -45,7 +51,7 @@ router.post('/insert_mockdata/:table/:n', function (req, res) {
         for (let i = 0; i < n; i++) {
             let insert_new_video = `
                 INSERT INTO video (title, url, description)
-                VALUES ("You know it's fool on cool", "https://youtu.be/ruCzgIWwb-8", "Nothing Amazing Happens Here"),
+                VALUES ("You know it's fool on cool", "https://youtu.be/ruCzgIWwb-8", "Nothing Amazing Happens Here")
             `;
             db.run(insert_new_video);
         }
