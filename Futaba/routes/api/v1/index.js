@@ -83,7 +83,7 @@ router.post('/insert_mockdata/:table/:n', function (req, res) {
         for (let i = 0; i < n; i++) {
             let rand = Math.random()
             let min = 1649545067893;
-            let max = 1682068275502;
+            let max = 1686406948569;
             let random_timestamp = min + Math.floor((max - min) * rand);
             let package = [1, 2, 3][Math.floor(rand * 3)];
             let insert_new_bill = `
