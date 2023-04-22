@@ -11,3 +11,5 @@
 - [Warp to app.js](https://github.com/zenosaika/Futaba/blob/main/Futaba/app.js)
 - [Warp to Create API section](https://github.com/zenosaika/Futaba/blob/main/Futaba/routes/api/v1/index.js)
 - [Warp to Create Database section](https://github.com/zenosaika/Futaba/blob/main/Futaba/public/javascripts/create_db.js)
+
+<br><img src="https://github.com/zenosaika/Futaba/blob/main/my_resources/ERD_20230414.png"><br>
