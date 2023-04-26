@@ -3,11 +3,15 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors')
 
 var api_v1 = require('./routes/api/v1/index');
 
 // create database
 require('./public/javascripts/create_db')
+
+// start web socket server
+// require('./public/javascripts/ws_server')
 
 var app = express();
 
@@ -15,6 +19,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

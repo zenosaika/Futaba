@@ -36,11 +36,31 @@ router.get('/get/:table/:id', function (req, res) {
 
 });
 
+// get all message in <receiver_user_id> room
+router.get('/get_messages/:receiver_user_id', function (req, res) {
+    let receiver_user_id = req.params.receiver_user_id
+    let sql = `SELECT * FROM message WHERE receiver_user_id = ${receiver_user_id}`
+
+    db.all(sql, (err, rows) => {
+        if (err) {
+            return res.json({ status: 'Failed', error: err })
+        }
+        return res.json({ status: 'Success', data: rows })
+    })
+
+});
+
 // insert one record to table
 router.post('/insert/:table', function (req, res) {
     let table = req.params.table
     let body = req.body
     let sql = ''
+
+    if (body) {
+        console.log(body)
+    } else {
+        console.log('no body')
+    }
 
     switch (table) {
         case 'user':
